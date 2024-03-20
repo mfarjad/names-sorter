@@ -33,7 +33,7 @@ jobs:
 
     # Build all projects in the solution
     - name: Build projects
-      uses: dotnet build --configuration ${{ env.Configuration }}  
+      run: dotnet build --configuration ${{ env.Configuration }}  
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
