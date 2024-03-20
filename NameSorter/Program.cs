@@ -13,10 +13,8 @@ try
 
     if (filePath is null)
     {
-        filePath = "SampleInput\\sample-unsorted-names-list-1000.txt";
+        filePath = "SampleInput\\sample-unsorted-names-list.txt";
     }
-
-    Console.WriteLine($"Reading from: {filePath}");
 
     IFileReader fileReader = new FileReader();
     string[] lines = fileReader.ReadAllLines(filePath).ToArray();
@@ -24,10 +22,16 @@ try
     IPersonNamesSorter<string> sorter = new PersonNamesSpanBasedSorter();
     IEnumerable<string> sortedNames = sorter.Sort(lines);
 
+    // Write to console
+    sortedNames.ToList().ForEach(Console.WriteLine);
+
+    // Write to file
     IFileWriter fileWriter = new FileWriter();
     fileWriter.WriteAllLines(OutputFileName, sortedNames);
 
-    Console.WriteLine($"Output written to: {OutputFileName}");
+    // Write info
+    Console.WriteLine($"\n\nInput read from: {filePath}");
+    Console.WriteLine($"Output saved to: {OutputFileName}");
 }
 catch (Exception ex)
 {
