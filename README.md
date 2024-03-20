@@ -19,7 +19,7 @@ Frankie Conner Ritter
 
 ### Executing the program in the following way;
 ```
-name-sorter ./unsorted-names-list.txt
+./name-sorter ./unsorted-names-list.txt
 ```
 
 ### Should result the sorted names to screen;
