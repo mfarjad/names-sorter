@@ -10,16 +10,14 @@ jobs:
 
   build:
 
-    runs-on: ${{matrix.os}}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        configuration: [Release]
         os: [windows-latest, ubuntu-latest]
 
     env:
-      Solution_Name: NameSorter.sln
-      Test_Project_Path: NameSorter.UnitTests\NameSorter.UnitTests.csproj
+      Configuration: Release
 
     steps:
     - name: Checkout
@@ -33,9 +31,9 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v2
+    # Build all projects in the solution
+    - name: Build projects
+      uses: dotnet build --configuration ${{ env.Configuration }}  
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
