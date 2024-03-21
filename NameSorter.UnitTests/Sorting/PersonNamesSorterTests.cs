@@ -38,7 +38,7 @@ namespace NameSorter.UnitTests.Sorting
 
         [Theory]
         [InlineData(new string[] { "Janet Parsons", "Vaughn Lewis", "Adonis Julius Archer" }, new string[] { "Adonis Julius Archer", "Vaughn Lewis", "Janet Parsons" })]
-        [InlineData(new string[] { "Vaughn Parsons", "Janet Parsons", "Adonis Julius Archer" }, new string[] { "Adonis Julius Archer", "Janet Parsons", "Vaughn Parsons1" })]
+        [InlineData(new string[] { "Vaughn Parsons", "Janet Parsons", "Adonis Julius Archer" }, new string[] { "Adonis Julius Archer", "Janet Parsons", "Vaughn Parsons" })]
         public void Sort_Names_ReturnsSortedNames(string[] names, string[] expectedSortedNames)
         {
             // Arrange
