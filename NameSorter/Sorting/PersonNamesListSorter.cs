@@ -4,6 +4,12 @@
     {
         public IEnumerable<string> Sort(IEnumerable<string> names)
         {
+            return Sort(names, true);
+        }
+
+        public IEnumerable<string> Sort(IEnumerable<string> names, bool isAscending = true)
+        {
+
             ArgumentNullException.ThrowIfNull(names);
 
             if (!names.Any())
@@ -20,9 +26,20 @@
                 result.Add(new Tuple<string, string>(line.Substring(lastSpaceIndex + 1), line.Substring(0, lastSpaceIndex)));
             }
 
-            result.Sort();
+            IEnumerable<Tuple<string, string>> sorted = null;
+
+            if (isAscending)
+            {
+                result.Sort();
+                sorted = result;
+            }
+            else
+            {
+                sorted = result.OrderByDescending(i => i);
+            }
 
             return result.Select(pn => $"{pn.Item2} {pn.Item1}");
+
         }
     }
 }

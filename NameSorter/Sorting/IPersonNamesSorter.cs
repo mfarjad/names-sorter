@@ -8,5 +8,7 @@
         /// <param name="names">Collection of full names.</param>
         /// <returns></returns>
         public IEnumerable<T> Sort(IEnumerable<T> names);
+
+        public IEnumerable<T> Sort(IEnumerable<T> names, bool isAscending = true);
     }
 }

@@ -4,7 +4,14 @@ namespace NameSorter.Sorting
 {
     public class PersonNamesSpanBasedSorter : IPersonNamesSorter<string>
     {
+        private readonly PersonComparerDescending descendingComparer = new(); 
+
         public IEnumerable<string> Sort(IEnumerable<string> names)
+        {
+            return Sort(names, true);
+        }
+
+        public IEnumerable<string> Sort(IEnumerable<string> names, bool isAscending = true)
         {
             ArgumentNullException.ThrowIfNull(names);
 
@@ -20,7 +27,14 @@ namespace NameSorter.Sorting
                 personNames.Add(new PersonName(name));
             }
 
-            personNames.Sort();
+            if (isAscending)
+            {
+                personNames.Sort();
+            }
+            else
+            {
+                personNames.Sort(descendingComparer);
+            }
 
             return personNames.Select(pn => pn.FullName);
         }

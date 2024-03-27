@@ -10,6 +10,7 @@ namespace NameSorter.UnitTests.Sorting
         public PersonNamesSorterTests()
         {
             sorter = new PersonNamesSpanBasedSorter();
+            // sorter = new PersonNamesListSorter();
         }
 
         [Fact]
@@ -45,6 +46,19 @@ namespace NameSorter.UnitTests.Sorting
 
             // Act
             var sortedNames = sorter.Sort(names);
+
+            // Assert
+            sortedNames.Should().Equal(expectedSortedNames);
+        }
+
+        [Theory]
+        [InlineData(new string[] { "Janet Parsons", "Vaughn Parsons", "Adonis Julius Archer" }, new string[] { "Vaughn Parsons", "Janet Parsons", "Adonis Julius Archer" })]
+        public void Sort_Names_ReturnsSortedNamesDescending(string[] names, string[] expectedSortedNames)
+        {
+            // Arrange
+
+            // Act
+            var sortedNames = sorter.Sort(names, false);
 
             // Assert
             sortedNames.Should().Equal(expectedSortedNames);

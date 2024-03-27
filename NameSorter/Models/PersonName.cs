@@ -3,8 +3,8 @@
     public record PersonName : IComparable<PersonName>
     {
         private int lastSpaceIndex;
-        private ReadOnlySpan<char> GivenNames => FullName.AsSpan(0, lastSpaceIndex);
-        private ReadOnlySpan<char> LastName => FullName.AsSpan(lastSpaceIndex + 1);
+        public ReadOnlySpan<char> GivenNames => FullName.AsSpan(0, lastSpaceIndex);
+        public ReadOnlySpan<char> LastName => FullName.AsSpan(lastSpaceIndex + 1);
 
         public string FullName { get; set; }
 

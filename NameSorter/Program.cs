@@ -16,11 +16,18 @@ try
         filePath = "SampleInput\\sample-unsorted-names-list.txt";
     }
 
+    bool isAscending = false;
+
+    if(args.Length > 1 && args[1]?.ToLower() == bool.TrueString.ToLower())
+    {
+        isAscending = true;
+    }
+
     IFileReader fileReader = new FileReader();
     string[] lines = fileReader.ReadAllLines(filePath).ToArray();
 
-    IPersonNamesSorter<string> sorter = new PersonNamesSpanBasedSorter();
-    IEnumerable<string> sortedNames = sorter.Sort(lines);
+    IPersonNamesSorter<string> sorter = new PersonNamesSpanBasedSorter(); // new PersonNamesListSorter();
+    IEnumerable<string> sortedNames = sorter.Sort(lines, isAscending);
 
     // Write to console
     sortedNames.ToList().ForEach(Console.WriteLine);
